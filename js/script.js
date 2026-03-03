@@ -8,9 +8,20 @@ const loadWord = (id) => {
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     fetch(url)
         .then(res => res.json())
-        .then(data => displayWord(data.data))
+        .then(data => {
+            removeActive() // active class remove
+            const lessonBtn = document.getElementById(`lesson-btn-${id}`)
+            lessonBtn.classList.add("active") // add active class
+            displayWord(data.data)
+        })
 }
 
+const removeActive = () =>{
+    const allActiveClass = document.querySelectorAll(".active-btn");
+    allActiveClass.forEach(btn => {
+        btn.classList.remove("active")
+    })
+}
 
 const displayLevel = (lessons) => {
     // get parent div
@@ -22,7 +33,7 @@ const displayLevel = (lessons) => {
         // create child / lesson filed
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-            <button onclick="loadWord(${lesson.level_no})" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i> lesson -${lesson.level_no}</button>
+            <button id="lesson-btn-${lesson.level_no}" onclick="loadWord(${lesson.level_no})" class="btn btn-outline btn-primary active-btn"><i class="fa-solid fa-book-open"></i> lesson -${lesson.level_no}</button>
         `
         // append child
         levelContainer.append(btnDiv);
@@ -45,7 +56,6 @@ const displayWord = (words) => {
     }
 
     words.forEach(word => {
-        console.log(word)
         const card = document.createElement("div");
         card.innerHTML = `
             <div class="bg-white text-center pt-14 pb-10 px-3 rounded-xl ">
@@ -54,7 +64,7 @@ const displayWord = (words) => {
                 <h2 class="font-bangla text-3xl font-semibold text-[#58585c] mb-3">"${word.meaning ? word.meaning : "অর্থ পাওয়া যাচ্ছে না"} / ${word.pronunciation ? word.pronunciation: "pronunciation পাওয়া যাচ্ছে না"}"</h2>
 
                 <div class="flex justify-between items-center">
-                <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
+                <button onclick="my_modal_5.showModal()" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
                 <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
                 </div>
             </div>

@@ -48,14 +48,14 @@
                     <ul tabindex="-1"
                         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                         <li>
-                            <a href="" ><i class="fa-solid fa-circle-question"></i>FAQ</a>
+                            <a href=""><i class="fa-solid fa-circle-question"></i>FAQ</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fa-solid fa-book-open"></i> Learn</a>
+                            <a href=""><i class="fa-solid fa-book-open"></i> Learn</a>
                         </li>
                         <li>
-                            <a href="" ><i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            Logout</a>
+                            <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Logout</a>
                         </li>
 
                     </ul>
@@ -70,15 +70,17 @@
             <div class="navbar-end hidden lg:flex">
                 <ul class="menu menu-horizontal px-1 space-x-3">
                     <li>
-                            <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-circle-question"></i>FAQ</a>
-                        </li>
-                        <li>
-                            <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i> Learn</a>
-                        </li>
-                        <li>
-                            <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <a href="" class="btn btn-outline btn-primary"><i
+                                class="fa-solid fa-circle-question"></i>FAQ</a>
+                    </li>
+                    <li>
+                        <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i> Learn</a>
+                    </li>
+                    <li>
+                        <a href="" class="btn btn-outline btn-primary"><i
+                                class="fa-solid fa-arrow-right-from-bracket"></i>
                             Logout</a>
-                        </li>
+                    </li>
                 </ul>
             </div>
 
@@ -89,10 +91,13 @@
     <section class="flex flex-col-reverse md:flex-row justify-between gap-5 items-center w-11/12 mx-auto py-20 mb-28">
         <div class="contain flex-1 text-center md:text-left">
             <h2 class="text-4xl font-bold mb-6"><span class="text-sky-500">English</span> is Easy!!</h2>
-            <p class="font-bangla text-xl text-[#18181B] mb-7">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+            <p class="font-bangla text-xl text-[#18181B] mb-7">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন
+                হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
             <form class="space-y-5 ">
-                <input class="border border-[#18181b59] rounded-sm py-2.5 px-3 w-8/12" type="text" name="" id="" placeholder="Enter Your Name"><br>
-                <input class="border border-[#18181b59] rounded-sm py-2.5 px-3 w-8/12" type="password" placeholder="Enter your password"><br>
+                <input class="border border-[#18181b59] rounded-sm py-2.5 px-3 w-8/12" type="text" name="" id=""
+                    placeholder="Enter Your Name"><br>
+                <input class="border border-[#18181b59] rounded-sm py-2.5 px-3 w-8/12" type="password"
+                    placeholder="Enter your password"><br>
                 <input class="btn btn-primary" type="submit" value="Get Started">
             </form>
         </div>
@@ -103,14 +108,15 @@
 
     <!-- all vocabularies section -->
     <section>
-        <h2 class="text-4xl font-bold mb-9 text-center"><span class="text-sky-500">Let's</span>  Learn Vocabularies</h2>
+        <h2 class="text-4xl font-bold mb-9 text-center"><span class="text-sky-500">Let's</span> Learn Vocabularies</h2>
 
         <!-- lesson container -->
         <div id="lesson-container" class="flex justify-center gap-5 flex-wrap mb-10"></div>
     </section>
 
     <!-- all word form vocabularies -->
-    <section id="word-container" class="bg-base-300 p-8 w-11/12 mx-auto mb-28 grid grid-cols-1 md:grid-cols-3 gap-8 rounded-xl">
+    <section id="word-container"
+        class="bg-base-300 p-8 w-11/12 mx-auto mb-28 grid grid-cols-1 md:grid-cols-3 gap-8 rounded-xl">
 
         <!-- default show text -->
         <div class="col-span-full text-center py-20 font-bangla space-y-5">
@@ -118,6 +124,21 @@
             <h2 class="text-4xl text-[#29252480] font-semibold">একটি Lesson Select করুন।</h2>
         </div>
     </section>
+
+    <!-- modal section -->
+    <!-- Open the modal using ID.showModal() method -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Hello!</h3>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 
 
     <script src="js/script.js"></script>
