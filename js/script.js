@@ -1,3 +1,24 @@
+const createElement=(arr) =>{
+    const htmlElement = arr.map(item => `<span class="btn bg-base-300">${item}</span>`);
+    return htmlElement.join(" ");
+}
+
+const loading =(status) =>{
+    if(status == true){
+        document.getElementById("spiner-container").classList.remove("hidden");
+        document.getElementById("word-container").classList.add("hidden");
+    }else{
+        document.getElementById("spiner-container").classList.add("hidden");        
+        document.getElementById("word-container").classList.remove("hidden");        
+    }
+}
+
+const pronounceWord = (word) => {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
 const loadLevel = () => {
     fetch("https://openapi.programming-hero.com/api/levels/all")
         .then(response => response.json())
@@ -5,6 +26,7 @@ const loadLevel = () => {
 }
 
 const loadWord = (id) => {
+    loading(true)
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     fetch(url)
         .then(res => res.json())
@@ -14,6 +36,14 @@ const loadWord = (id) => {
             lessonBtn.classList.add("active") // add active class
             displayWord(data.data)
         })
+    
+}
+
+const loadWordDetails =async (id) =>{
+    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayWordDetails(data.data);
 }
 
 const removeActive = () =>{
@@ -52,6 +82,7 @@ const displayWord = (words) => {
                 <h2 class="text-4xl text-[#29252480] font-semibold">নেক্সট Lesson এ যান</h2>
             </div>
         `;
+        loading(false)
         return;
     }
 
@@ -64,14 +95,57 @@ const displayWord = (words) => {
                 <h2 class="font-bangla text-3xl font-semibold text-[#58585c] mb-3">"${word.meaning ? word.meaning : "অর্থ পাওয়া যাচ্ছে না"} / ${word.pronunciation ? word.pronunciation: "pronunciation পাওয়া যাচ্ছে না"}"</h2>
 
                 <div class="flex justify-between items-center">
-                <button onclick="my_modal_5.showModal()" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
-                <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
+                <button onclick="loadWordDetails(${word.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
+                <button onclick="pronounceWord('${word.word}')" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
                 </div>
             </div>
         `
 
         WordContainer.append(card)
     })
+    loading(false)
+}
+
+const displayWordDetails = (details) =>{
+    const wordDetailsContainer = document.getElementById("word-details-container");
+
+    wordDetailsContainer.innerHTML = `
+                <div>
+                    <h2 class="text-3xl font-bold">${details.word} ( <i class="fa-solid fa-microphone-lines"></i> :${details.pronunciation})</h2>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold mb-1">Meaning</h2>
+                    <p class="font-bangla text-xl font-medium">${details.meaning ? details.meaning :"পাওয়া যায়নি"}</p>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold mb-1">Example</h2>
+                    <p class="text-xl font-medium">${details.sentence}</p>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold mb-1 font-bangla">সমার্থক শব্দ গুলো</h2>
+                    <div class = "">${createElement(details.synonyms)}</div>
+                </div>
+                
+
+    `;
+
+    document.getElementById("modal_container").showModal();
 }
 
 loadLevel();
+
+document.getElementById("input-btn").addEventListener("click",() => {
+    removeActive();
+    const inputWord = document.getElementById("input-search");
+    const searchWord = inputWord.value.trim().toLowerCase() ;
+    
+    // all word from API
+    fetch("https://openapi.programming-hero.com/api/words/all")
+    .then(response => response.json())
+    .then(data => {
+        const allWordList = data.data;
+        const filterWord = allWordList.filter((word) => word.word.toLowerCase().includes(searchWord));
+        displayWord(filterWord)
+    })
+    inputWord.value = "";
+})
