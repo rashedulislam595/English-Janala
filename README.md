@@ -1,116 +1,163 @@
-# ENGLISH <img width="25px" src="./assets/logo.png" /> JANALA
+# 🪟 English Janala — Easy English Learning Platform
+
+> আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন — Start your language learning journey today with interactive vocabulary lessons!
+
+**English Janala** is a beginner-friendly, interactive English vocabulary learning web application. It helps Bengali-speaking users build their English vocabulary step by step through structured lessons, word details, and a clean, responsive UI — all powered by a live REST API.
+
+🌐 **Live Site:** [https://english-janala-project-easy-english.netlify.app/](https://english-janala-project-easy-english.netlify.app/)
+📂 **GitHub Repo:** [https://github.com/rashedulislam595/English-Janala](https://github.com/rashedulislam595/English-Janala?tab=readme-ov-file)
 
 ---
 
-## ⚡ API Endpoints
+## 🛠️ Tech Stack
 
-1. Get ⚡ All Levels
+| Technology | Purpose |
+|---|---|
+| **HTML5** | Markup and page structure |
+| **CSS3** | Styling and responsive layout |
+| **JavaScript (ES6+)** | Application logic and interactivity |
+| **DOM Manipulation** | Dynamic rendering of lessons and words |
+| **Fetch API** | Consuming REST API endpoints |
 
-```bash
-https://openapi.programming-hero.com/api/levels/all
+> ⚡ No frameworks. No libraries. Pure Vanilla JavaScript.
+
+---
+
+## ✨ Features
+
+- 📚 **Lesson Selector** — Browse through 7 structured vocabulary levels, from *Basic Vocabulary* to *Mastering Vocabulary*
+- 🔍 **Word Search** — Search words within any selected lesson in real time
+- 📖 **Word Details** — Click on any word to view its detailed definition, pronunciation, and usage
+- ❓ **FAQ Section** — Answers to common questions about using the platform
+- 📱 **Responsive Design** — Works seamlessly across desktop and mobile devices
+
+---
+
+## 📡 API Reference
+
+All data is sourced from the [Programming Hero Open API](https://openapi.programming-hero.com/).
+
+### Get All Levels
+```
+GET https://openapi.programming-hero.com/api/levels/all
 ```
 
-1. Get ⚡ Words by Levels <br/>
-   https:// openapi.programming-hero.com/api/level/{id}
-
-```bash
-https://openapi.programming-hero.com/api/level/5
-```
-
-1. Get ⚡ Words Detail <br/>
-   https:// openapi.programming-hero.com/api/word/{id}
-
-```bash
-https://openapi.programming-hero.com/api/word/5
-```
-
-1. Get ⚡ All Words <br/>
-
-```bash
-https://openapi.programming-hero.com/api/words/all
-```
-
-# Work To do
-
-### 1. Show Levels on The UI
-
-- [ ] Show a center-aligned heading as Figma
-
----
-
-- [ ] Create dynamically generated buttons from **API-01** for each lesson
-- [ ] Lesson Buttons will be displayed on page load
-
----
-
-### 2. Show Word Cards Based on Level
-
-- [ ] Show a default text that will be displayed in the Vocabulary section initially
-- [ ] on Clicking a Specific Lesson Button Load All the words from **API-02**
-- [ ] Display all words for a selected lesson in a card format, showing:
-
-  - [ ] Word
-  - [ ] Word meaning & pronunciation
-  - [ ] Two buttons with relevant icons as per Figma
-
-- [ ] Show **\*No Word Found** message if no words exist for a lesson
-
----
-
-- [ ] Create functionality to highlight the active lesson button
-
----
-
-### 3. Use Different Color on The Active Level Button
-
-- [ ] After Successfully Loading words of a level , diffirentiate the button so user can understand which button is active
-
-### 4. Vocabulary Details
-
-- [ ] Create functionality to open a modal when clicking the details icon
-- [ ] Data will be load from **API-03**
-- [ ] modal will displays:
-  - [ ] Word with pronunciation
-  - [ ] Example sentence
-  - [ ] Synonyms
-  - [ ] A "Complete Learning" button to close the modal
-
-### 5. Handling Invalid Data
-
-- [ ] avoid displaying falsy values like `undefined` or `null`
-- [ ] display relevant words if no data is found
-
-### 6. Loading Spinner
-
-- [ ] Create a loading spinner that will be display when vocabulary is loading from API
-
-### 7. Implement Search Functionality
-
-- [ ] Take a input Box.
-- [ ] on Changing value It will Search word and show in the UI.
-- [ ] If anyone Do search reset active button
-
-### 8. Save Word Feature
-
-- [ ] in the UI of Card add a button `Heart icon`
-- [ ] on Clicking it. Store the Word in the Saved Box
-- [ ] Show Saved words in a Different Section.
-
-### 9. Speak your Vocabularies
-
-- [ ] Create functionality for voice pronunciation of vocabulary words
-- [ ] Use below function and implement on clicking sound icon
-
-```js
-function pronounceWord(word) {
-  const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = "en-EN"; // English
-  window.speechSynthesis.speak(utterance);
+**Sample Response:**
+```json
+{
+  "status": true,
+  "data": [
+    { "id": 101, "level_no": 1, "lessonName": "Basic Vocabulary" },
+    { "id": 102, "level_no": 2, "lessonName": "Everyday Words" }
+  ]
 }
 ```
 
-For More >> you can explore this implementation 👉 [https://codepen.io/Ferdous-Zihad/pen/PwoJMmJ](https://codepen.io/Ferdous-Zihad/pen/PwoJMmJ)
+### Get Words by Level
+```
+GET https://openapi.programming-hero.com/api/level/{id}
+```
+
+**Example:**
+```
+https://openapi.programming-hero.com/api/level/5
+```
+
+### Get Word Details
+```
+GET https://openapi.programming-hero.com/api/word/{id}
+```
+
+**Example:**
+```
+https://openapi.programming-hero.com/api/word/5
+```
+
+### Get All Words
+```
+GET https://openapi.programming-hero.com/api/words/all
+```
 
 ---
-Bonus : How to create Private Repository for next assignments
-## Test Repo - :  https://classroom.github.com/a/Fgjib-lr
+
+## 📦 Dependencies
+
+This project has **zero external dependencies**. Everything runs on native browser APIs:
+
+- `fetch()` — for API calls
+- `DOM API` — for rendering dynamic content
+- `CSS Custom Properties` — for consistent theming
+
+No `npm install` required. ✅
+
+---
+
+## 🚀 Run Locally
+
+Follow these steps to run the project on your local machine:
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/rashedulislam595/English-Janala.git
+```
+
+### 2. Navigate to the Project Folder
+
+```bash
+cd English-Janala
+```
+
+### 3. Open in Browser
+
+**Option A — Direct File Open:**
+Simply double-click `index.html` to open it in your browser.
+
+**Option B — Using VS Code Live Server (Recommended):**
+
+1. Open the project folder in [VS Code](https://code.visualstudio.com/)
+2. Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+3. Right-click `index.html` → **"Open with Live Server"**
+4. The app will launch at `http://127.0.0.1:5500`
+
+
+---
+
+## 🗂️ Project Structure
+
+```
+English-Janala/
+├── index.html          # Main HTML file
+├── style.css           # Stylesheet
+├── script.js           # Main JavaScript logic
+└── assets/
+    ├── logo.png        # Site logo
+    └── hero-student.png # Hero section image
+```
+
+---
+
+## 🔗 Relevant Links
+
+| Resource | URL |
+|---|---|
+| 🌐 Live Demo | [english-janala-project-easy-english.netlify.app](https://english-janala-project-easy-english.netlify.app/) |
+| 💻 GitHub Repository | [github.com/rashedulislam595/English-Janala](https://github.com/rashedulislam595/English-Janala) |
+| 📡 API — All Levels | [openapi.programming-hero.com/api/levels/all](https://openapi.programming-hero.com/api/levels/all) |
+| 📡 API — Words by Level | [openapi.programming-hero.com/api/level/{id}](https://openapi.programming-hero.com/api/level/5) |
+| 📡 API — Word Detail | [openapi.programming-hero.com/api/word/{id}](https://openapi.programming-hero.com/api/word/5) |
+| 📡 API — All Words | [openapi.programming-hero.com/api/words/all](https://openapi.programming-hero.com/api/words/all) |
+
+---
+
+## 📸 Screenshots
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+
+---
+
+## 👤 Author
+
+**Rashedul Islam**
+- GitHub: [@rashedulislam595](https://github.com/rashedulislam595)
